@@ -11,4 +11,6 @@ public interface ViewInterface {
     void printChooseAnimal(Animal animal);
     void printAskNewAnimal();
     void printAskFindAnimal();
+    void printCommand();
+    void printExecuteCommand();
 }

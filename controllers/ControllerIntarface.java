@@ -6,5 +6,6 @@ public interface ControllerIntarface {
     void removeAnimal();
     void lookAllAnimal();
     void chooseAnimal();
+    void learchCommand();
 
 }

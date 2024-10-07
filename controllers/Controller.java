@@ -1,5 +1,6 @@
 package controllers;
 
+import counter.Counter;
 import models.*;
 import services.*;
 import views.*;
@@ -16,6 +17,8 @@ public class Controller implements ControllerIntarface{
         this.userMenuServiceInterface = new UserMenuService();
         this.viewInterface = new View();
     }
+
+
 
     @Override
     public void userMenuStart() {
@@ -38,6 +41,13 @@ public class Controller implements ControllerIntarface{
                 case "4":
                     removeAnimal();
                     break;
+                case "5":
+                    learchCommand();
+                    break;
+                case "6":
+                    Counter.add();
+                    Counter.printCount();
+                    break;
                 default:
                     animalServiceInterface.executeCommand(cmnd);
             }
@@ -46,7 +56,14 @@ public class Controller implements ControllerIntarface{
             cmnd = userMenuServiceInterface.getUserAnswer();
         }
     }
-
+    @Override
+    public void learchCommand() {
+        viewInterface.printCommand();
+        String command = userMenuServiceInterface.getUserAnswer();
+        viewInterface.printExecuteCommand();
+        String execute = userMenuServiceInterface.getUserAnswer();
+        animalServiceInterface.learnCommand(command, execute);
+    }
     @Override
     public void createAnimal() {
         viewInterface.printAskNewAnimal();

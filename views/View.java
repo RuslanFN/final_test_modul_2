@@ -3,9 +3,12 @@ package views;
 import models.Animal;
 import models.TypeAnimal;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class View implements ViewInterface{
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MM");
     @Override
     public void printStart() {
         String s = """
@@ -24,6 +27,16 @@ public class View implements ViewInterface{
     }
 
     @Override
+    public void printCommand() {
+        System.out.println("Введите комманду");
+    }
+
+    @Override
+    public void printExecuteCommand() {
+        System.out.println("Введите действие питомца");
+    }
+
+    @Override
     public void printFunctionList() {
         String s = """
                 Список функций:
@@ -31,6 +44,8 @@ public class View implements ViewInterface{
                 2. Посмотреть всех животных
                 3. Выбрать животное
                 4. удалить выбраное животное
+                5. научить команде
+                6. counter
                 """;
         System.out.println(s);
     }
@@ -44,7 +59,8 @@ public class View implements ViewInterface{
     }
     private void printAnimal(Animal animal){
         if (animal != null)
-            System.out.println(animal.getName() + " " + animal.getBirthDate().toString() + " " + TypeAnimal.getType(animal.getClass().toString()));
+
+            System.out.println(animal.getName() + " " + dateFormat.format(animal.getBirthDate()) + " " + TypeAnimal.getType(animal.getClass().toString()));
         else
             System.out.println("Отсутствует");
     }

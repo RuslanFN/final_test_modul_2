@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ public abstract class Animal implements AnimalCommand{
     private Map<String, String> commands;
 
     Animal(Date birthDate, String Name){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("y MM");
         this.Name = Name;
         this.birthDate = birthDate;
         commands = new HashMap<>();
@@ -27,7 +29,7 @@ public abstract class Animal implements AnimalCommand{
     @Override
     public void executeCommand(String command) {
         if (commands.containsKey(command)){
-            System.out.println(commands.get(command));
+            System.out.println(this.getName() + ": " + commands.get(command));
         }else{
             System.out.println("Не знаю такой команды");
         }
